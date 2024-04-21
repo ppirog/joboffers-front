@@ -3,19 +3,23 @@ import { FormsModule } from "@angular/forms";
 import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+
     FormsModule,
     HttpClientModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
 export class LoginComponent {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService ){}
 
   loginObj: any = {
     username: "someUser",
@@ -24,19 +28,21 @@ export class LoginComponent {
 
   headers = new HttpHeaders()
     .set('Content-Type', 'application/json');
-
+  // url = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
+  url = 'http://localhost:8080';
 
 
   onLogin() {
-    this.http.post('http://localhost:8080/token', this.loginObj, { headers: this.headers }).subscribe(
+
+    this.http.post(this.url + '/token', this.loginObj, { headers: this.headers }).subscribe(
       (response: any) => {
-        if ('token' in response) {
-          localStorage.setItem('token', response.token);
-          console.log('token:', response.token);
+        if ('token' in response && response.token) {
+          this.cookieService.set('token', response.token);
+          console.log('Token:', response.token);
 
-          this.headers = this.headers.set('Authorization', 'Bearer ' + response.token);
+          this.headers = this.headers.set('Authorization', 'Bearer ' + this.cookieService.get('token'));
 
-          this.http.post('http://localhost:8080/login', this.loginObj, { headers: this.headers }).subscribe(
+          this.http.post(this.url+'/login', this.loginObj, { headers: this.headers }).subscribe(
             (loginResponse) => {
               console.log('Udane logowanie:', loginResponse);
               this.router.navigate(['/dashboard']);
@@ -56,9 +62,11 @@ export class LoginComponent {
   }
 
 
+
+
   onRegister() {
 
-    this.http.post('http://localhost:8080/register', this.loginObj, { headers: this.headers }).subscribe(
+    this.http.post(this.url+'/register', this.loginObj, { headers: this.headers }).subscribe(
       (response) => {
 
         console.log('Udane rejestracji:', response);

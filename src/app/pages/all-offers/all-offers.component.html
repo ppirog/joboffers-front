@@ -1,0 +1,13 @@
+<!-- all-offers.component.html -->
+<div class="center-content">
+  <h2 class="title">All Offers</h2>
+  <ul >
+    <li class="offer-list" *ngFor="let offer of offers">
+      <div class="spacer"></div>
+      <h3> {{ offer.jobTitle }}</h3>
+      <p>Company: {{ offer.companyName }}</p>
+      <p>Salary: {{ offer.salary }}</p>
+      <p>ID: {{ offer.id }}</p>
+    </li>
+  </ul>
+</div>

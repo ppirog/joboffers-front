@@ -1,38 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {FormsModule} from "@angular/forms";
-import {Router, RouterOutlet} from "@angular/router";
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
-import {JsonPipe} from "@angular/common";
-import {subscribe} from "node:diagnostics_channel";
-
-import {response} from "express";
-import {error} from "@angular/compiler-cli/src/transformers/util";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {Offer} from "../offer.interface";
-
-
-
-
-
+import {NgForOf} from "@angular/common";
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-all-offers',
   standalone: true,
   imports: [
-
-    FormsModule,
-    HttpClientModule,
-    RouterOutlet,
-    JsonPipe
+    NgForOf
   ],
-  providers: [],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  templateUrl: './all-offers.component.html',
+  styleUrl: './all-offers.component.scss'
 })
-export class DashboardComponent implements OnInit {
+export class AllOffersComponent implements OnInit{
   offers: Offer[] = [];
   // url: string = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
   url = 'http://localhost:8080';
+  isOfferVisible: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -40,7 +26,6 @@ export class DashboardComponent implements OnInit {
     private cookieService: CookieService
   ) {
   }
-
   ngOnInit(): void {
     this.loadOffers();
   }
@@ -66,8 +51,5 @@ export class DashboardComponent implements OnInit {
         }
       }
     );
-
   }
-
-
 }

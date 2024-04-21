@@ -1,0 +1,17 @@
+<div class="center-content">
+  <h2 class="title" style="margin-left: 0%">Find By Id</h2>
+  <form style="font-size: 25px" (ngSubmit)="findOfferClick($event)">
+    <input type="text" id="offerId" name="offerId" [(ngModel)]="offerId">
+    <button  type="submit">Submit</button>
+  </form>
+  <div *ngIf="loading">Ładowanie...</div>
+  <div *ngIf="error">{{ error }}</div>
+  <div  class="offer-list" *ngIf="offer">
+    <h3> {{ offer.jobTitle }}</h3>
+    <p>Company: {{ offer.companyName }}</p>
+    <p>Salary: {{ offer.salary }}</p>
+    <p>ID: {{ offer.id }}</p>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
