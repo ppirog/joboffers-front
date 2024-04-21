@@ -1,1 +1,29 @@
-<p>add-offer works!</p>
+<div class="center-content">
+  <h2 class="title" style="margin-left: 0">ADD OFFER</h2>
+  <form style="font-size: 25px" (submit)="addOfferClick()">
+    <div style="margin-bottom: 10px;">
+      <input type="text" id="offerId" name="offerId" placeholder="Offer ID" [(ngModel)]="offer.id">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <input type="text" id="url" name="url" placeholder="url" [(ngModel)]="offer.url">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <input type="text" id="jobTitle" name="jobTitle" placeholder="jobTitle" [(ngModel)]="offer.jobTitle">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <input type="text" id="companyName" name="companyName" placeholder="company Name" [(ngModel)]="offer.companyName">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <input type="text" id="salary" name="salary" placeholder="salary" [(ngModel)]="offer.salary">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <div *ngIf="loading">Ładowanie...</div>
+  <div *ngIf="error">{{ error }}</div>
+  <div  class="offer-list" *ngIf="offerResponse">
+    <h3> {{ offerResponse?.jobTitle }}</h3>
+    <p>Company: {{ offerResponse?.companyName }}</p>
+    <p>Salary: {{ offerResponse?.salary }}</p>
+    <p>ID: {{ offerResponse?.id }}</p>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="center-content">
-  <h2 class="title" style="margin-left: 0%">Find By Id</h2>
-  <form style="font-size: 25px" (ngSubmit)="findOfferClick($event)">
+  <h2 class="title" style="margin-left: 0">Find By Id</h2>
+  <form style="font-size: 25px" (ngSubmit)="findOfferClick()">
     <input type="text" id="offerId" name="offerId" [(ngModel)]="offerId">
     <button  type="submit">Submit</button>
   </form>
@@ -13,5 +13,4 @@
     <p>ID: {{ offer.id }}</p>
   </div>
 </div>
-<router-outlet></router-outlet>
 

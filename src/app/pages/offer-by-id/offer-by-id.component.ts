@@ -5,8 +5,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router, RouterOutlet} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {catchError, finalize, tap, throwError} from "rxjs";
-import {routes} from "../../app.routes";
 import {FormsModule} from "@angular/forms";
+import {environment} from "../../../environments";
 @Component({
   selector: 'app-offer-by-id',
   standalone: true,
@@ -22,7 +22,7 @@ import {FormsModule} from "@angular/forms";
 })
 export class OfferByIdComponent {
   // url: string = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
-  url = 'http://localhost:8080';
+  url = environment.apiUrl;
 
   offerId: string = '';
   offer: Offer | null = null ;
@@ -35,15 +35,15 @@ export class OfferByIdComponent {
     private cdr:ChangeDetectorRef,
   ) {
   }
-  findOfferClick(event: Event) {
-    event.preventDefault();
+  findOfferClick() {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer ' + this.cookieService.get('token'));
     this.loading = true;
     this.error = null;
 
-    this.http.get<any>(`${this.url}/offers/${this.offerId}`, { headers }).pipe(
+    this.http.get<any>(`${this.url}/offers/${this.offerId}`, { headers })
+      .pipe(
       tap(response => {
         this.offer = response;
         console.log(response)
@@ -59,7 +59,4 @@ export class OfferByIdComponent {
     ).subscribe();
 
   }
-
-  protected readonly event = event;
-  protected readonly Event = Event;
 }

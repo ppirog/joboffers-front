@@ -4,6 +4,8 @@ import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
 import { CookieService } from 'ngx-cookie-service';
+import {NgIf} from "@angular/common";
+import {environment} from "../../../environments";
 
 
 @Component({
@@ -12,7 +14,8 @@ import { CookieService } from 'ngx-cookie-service';
   imports: [
 
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgIf
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -29,7 +32,9 @@ export class LoginComponent {
   headers = new HttpHeaders()
     .set('Content-Type', 'application/json');
   // url = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
-  url = 'http://localhost:8080';
+  url = environment.apiUrl;
+  bladText: string ='BŁĘDNE DANE';
+  blad: boolean = false;
 
 
   onLogin() {
@@ -56,7 +61,8 @@ export class LoginComponent {
         }
       },
       (tokenError) => {
-        console.error('Błąd token:', tokenError);
+        console.error('Błąd login:', tokenError);
+        this.blad = true;
       }
     );
   }

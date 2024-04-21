@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterOutlet} from "@angular/router";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
+import {CookieService} from "ngx-cookie-service";
 
 interface Offer {
   id: string;
@@ -24,7 +25,8 @@ export class LayoutComponent implements OnInit{
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {
   }
   HomeClick(){
@@ -33,25 +35,8 @@ export class LayoutComponent implements OnInit{
   ngOnInit(): void {
 
   }
-
-
-  AllOffersClick() {
-
-  }
-
-  ByIdClick() {
-
-  }
-
-  AddOfferClick() {
-
-  }
-
-  SignUpClick() {
-
-  }
-
   LogoutClick() {
-
+    this.cookieService.deleteAll();
+    this.router.navigate(['/login']);
   }
 }

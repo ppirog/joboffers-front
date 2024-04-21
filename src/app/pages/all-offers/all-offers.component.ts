@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {Offer} from "../offer.interface";
 import {NgForOf} from "@angular/common";
+import {environment} from "../../../environments";
 
 @Component({
   selector: 'app-all-offers',
@@ -17,7 +18,8 @@ import {NgForOf} from "@angular/common";
 export class AllOffersComponent implements OnInit{
   offers: Offer[] = [];
   // url: string = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
-  url = 'http://localhost:8080';
+  // url = 'http://localhost:8080';
+  url = environment.apiUrl
   isOfferVisible: boolean = false;
 
   constructor(

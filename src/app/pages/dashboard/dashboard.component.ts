@@ -1,18 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {Router, RouterOutlet} from "@angular/router";
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {JsonPipe} from "@angular/common";
-import {subscribe} from "node:diagnostics_channel";
-
-import {response} from "express";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {CookieService} from "ngx-cookie-service";
 import {Offer} from "../offer.interface";
-
-
-
-
+import {environment} from "../../../environments";
 
 
 @Component({
@@ -32,7 +25,7 @@ import {Offer} from "../offer.interface";
 export class DashboardComponent implements OnInit {
   offers: Offer[] = [];
   // url: string = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
-  url = 'http://localhost:8080';
+  url  = environment.apiUrl;
 
   constructor(
     private http: HttpClient,

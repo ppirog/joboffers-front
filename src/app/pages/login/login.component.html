@@ -1,22 +1,27 @@
 <div class="parent">
-  <div class="main">
-    <input type="checkbox" id="chk" aria-hidden="true">
 
-    <div class="signup">
+  <div class="main">
+
+    <input aria-hidden="true" id="chk" type="checkbox">
+
+    <div class="login">
+
       <form>
-        <label for="chk" aria-hidden="true">Sign up</label>
-        <input type="text" name="username" [(ngModel)]="loginObj.username"  placeholder="Email" required="">
-        <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password" required="">
-        <button (click)="onRegister()">Sign up </button>
+        <label aria-hidden="true" for="chk">JOB OFFERS</label>
+        <label *ngIf="!blad" aria-hidden="true" for="chk">LOGIN</label>
+        <label *ngIf="blad">{{ bladText }}</label>
+        <input [(ngModel)]="loginObj.username" name="username" placeholder="Email" required="" type="text">
+        <input [(ngModel)]="loginObj.password" name="password" placeholder="Password" required="" type="password">
+        <button (click)="onLogin()">LOGIN</button>
       </form>
     </div>
 
-    <div class="login">
+    <div class="signup">
       <form>
-        <label for="chk" aria-hidden="true">Login</label>
-        <input type="text"  name="username" [(ngModel)]="loginObj.username" placeholder="Email" required="">
-        <input type="password" name="password" [(ngModel)]="loginObj.password" required="">
-        <button  (click)="onLogin()" >Login</button>
+        <label aria-hidden="true" for="chk">SIGN UP</label>
+        <input [(ngModel)]="loginObj.username" name="username" placeholder="Email" required="" type="text">
+        <input [(ngModel)]="loginObj.password" name="password" required="" type="password">
+        <button (click)="onRegister()">SIGN UP</button>
       </form>
     </div>
   </div>
