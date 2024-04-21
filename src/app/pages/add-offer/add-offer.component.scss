@@ -14,14 +14,14 @@ h2 {
 }
 
 .title {
-  margin-bottom: 10px; /* Dodaj margines dolny, aby oddzielić tytuł od listy */
+  margin-bottom: 10px;
   font-size: 100px;
 }
 
 .offer-list {
-  padding: 0; /* Usuń domyślne wewnętrzne wypełnienie listy */
-  margin: 10px; /* Usuń domyślne zewnętrzne marginesy listy */
-  list-style-type: none; /* Usuń domyślne punkty listy */
+  padding: 0;
+  margin: 10px;
+  list-style-type: none;
   background-image: linear-gradient(gold, gold);
   background-size: 100% 10px;
   background-repeat: no-repeat;
@@ -35,8 +35,8 @@ h2 {
 }
 
 .offer-list li {
-  margin-bottom: 20px; /* Dodaj margines dolny dla każdej oferty */
+  margin-bottom: 20px;
 }
 .spacer {
-  height: 1px; /* Ustaw wysokość przerwy na 10 pikseli (dostosuj do potrzeb) */
+  height: 1px;
 }
