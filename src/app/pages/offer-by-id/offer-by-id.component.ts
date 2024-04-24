@@ -36,9 +36,11 @@ export class OfferByIdComponent {
   ) {
   }
   findOfferClick() {
+    let token = sessionStorage['token'];
+
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
-      .set('Authorization', 'Bearer ' + this.cookieService.get('token'));
+      .set('Authorization', 'Bearer ' + token);
     this.loading = true;
     this.error = null;
 

@@ -24,13 +24,18 @@ import {environment} from "../../../environments";
 export class LoginComponent {
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService ){}
 
+  headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+  ;
+
   loginObj: any = {
     username: "someUser",
     password: "somePassword"
   };
-
-  headers = new HttpHeaders()
-    .set('Content-Type', 'application/json');
+  registerObj: any = {
+    username: "someUser",
+    password: "somePassword"
+  };
   // url = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
   url = environment.apiUrl;
   bladText: string ='BŁĘDNE DANE';
@@ -42,20 +47,23 @@ export class LoginComponent {
     this.http.post(this.url + '/token', this.loginObj, { headers: this.headers }).subscribe(
       (response: any) => {
         if ('token' in response && response.token) {
-          this.cookieService.set('token', response.token);
+          // this.cookieService.set('token', response.token);
+          sessionStorage.setItem('token',response.token)
           console.log('Token:', response.token);
 
-          this.headers = this.headers.set('Authorization', 'Bearer ' + this.cookieService.get('token'));
-
-          this.http.post(this.url+'/login', this.loginObj, { headers: this.headers }).subscribe(
-            (loginResponse) => {
-              console.log('Udane logowanie:', loginResponse);
-              this.router.navigate(['/dashboard']);
-            },
-            (loginError) => {
-              console.error('Błąd logowania:', loginError);
-            }
-          );
+          alert('Zalogowano pomyślnie!');
+          this.router.navigate(['/dashboard']);
+          // this.headers = this.headers.set('Authorization', 'Bearer ' + this.cookieService.get('token'));
+          //
+          // this.http.post(this.url+'/login', this.loginObj, { headers: this.headers }).subscribe(
+          //   (loginResponse) => {
+          //     console.log('Udane logowanie:', loginResponse);
+          //     this.router.navigate(['/dashboard']);
+          //   },
+          //   (loginError) => {
+          //     console.error('Błąd logowania:', loginError);
+          //   }
+          // );
         } else {
           console.error('Błąd token:', response);
         }
@@ -72,7 +80,7 @@ export class LoginComponent {
 
   onRegister() {
 
-    this.http.post(this.url+'/register', this.loginObj, { headers: this.headers }).subscribe(
+    this.http.post(this.url+'/register', this.registerObj, { headers: this.headers }).subscribe(
       (response) => {
 
         console.log('Udane rejestracji:', response);

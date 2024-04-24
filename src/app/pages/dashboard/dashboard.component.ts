@@ -39,11 +39,12 @@ export class DashboardComponent implements OnInit {
   }
 
   loadOffers() {
-    this.cookieService.get('token');
+    let token = sessionStorage['token'];
+
 
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
-      .set('Authorization', 'Bearer ' + this.cookieService.get('token'));
+      .set('Authorization', 'Bearer ' + token);
 
 
     this.http.get<any>(this.url + '/offers' ,{headers}).subscribe(
