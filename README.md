@@ -5,6 +5,14 @@
 	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png" alt="HTML" title="HTML"/></code>
 </div>
 
+# LIVEDEMO
+
+CLICK LINK BELOW TO SEE ON YOUTUBE HOW APP WORKS:
+https://www.youtube.com/watch?v=-vTgTVoMRhs
+
+CLICK LINK BELOW TO USE APP:
+http://ec2-3-79-167-135.eu-central-1.compute.amazonaws.com/login
+
 # SHOWCASE
 ![image](https://github.com/ppirog/joboffers-front/assets/126290295/0069206f-7f6c-4889-8462-4109d9adb702)
 ![image](https://github.com/ppirog/joboffers-front/assets/126290295/2611483b-018c-4c24-9ede-00e0d1f8678a)
