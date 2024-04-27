@@ -15,7 +15,7 @@ import {environment} from "../../../environments";
   templateUrl: './all-offers.component.html',
   styleUrl: './all-offers.component.scss'
 })
-export class AllOffersComponent implements OnInit{
+export class AllOffersComponent implements OnInit {
   offers: Offer[] = [];
   // url: string = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
   // url = 'http://localhost:8080';
@@ -26,8 +26,10 @@ export class AllOffersComponent implements OnInit{
     private http: HttpClient,
     private router: Router,
     private cookieService: CookieService
+
   ) {
   }
+
   ngOnInit(): void {
     this.loadOffers();
   }
@@ -40,7 +42,7 @@ export class AllOffersComponent implements OnInit{
       .set('Authorization', 'Bearer ' + token);
 
 
-    this.http.get<any>(this.url + '/offers' ,{headers}).subscribe(
+    this.http.get<any>(this.url + '/offers', {headers}).subscribe(
       (response: any) => {
         console.log('Odpowiedź z serwera:', response);
         this.offers = response.offers;

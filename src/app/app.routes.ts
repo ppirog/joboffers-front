@@ -5,6 +5,7 @@ import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {AllOffersComponent} from "./pages/all-offers/all-offers.component";
 import {OfferByIdComponent} from "./pages/offer-by-id/offer-by-id.component";
 import {AddOfferComponent} from "./pages/add-offer/add-offer.component";
+import {DeleteOfferComponent} from "./pages/delete-offer/delete-offer.component";
 
 export const routes: Routes = [
 
@@ -29,6 +30,10 @@ export const routes: Routes = [
         {
           path: 'addOffer',
           component: AddOfferComponent
+        },
+        {
+          path: 'deleteOffer',
+          component: DeleteOfferComponent
         }
       ]
     },

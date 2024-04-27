@@ -1,41 +1,28 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
-import {Router, RouterOutlet} from "@angular/router";
 import {Offer} from "../offer.interface";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {catchError, finalize, tap, throwError} from "rxjs";
+import {FormsModule} from "@angular/forms";
 import {environment} from "../../../environments";
 
 @Component({
-  selector: 'app-add-offer',
+  selector: 'app-delete-offer',
   standalone: true,
   imports: [
     FormsModule,
-    NgIf,
-    ReactiveFormsModule,
-    RouterOutlet,
-    FormsModule,
-    NgIf,
-    ReactiveFormsModule,
-    RouterOutlet
+    NgIf
   ],
-  templateUrl: './add-offer.component.html',
-  styleUrl: './add-offer.component.scss'
+  templateUrl: './delete-offer.component.html',
+  styleUrl: './delete-offer.component.scss'
 })
-export class AddOfferComponent {
+export class DeleteOfferComponent {
   url = environment.apiUrl;
 
-  offer: Offer = {
-    id: '',
-    url: '',
-    jobTitle: '',
-    companyName: '',
-    salary: ''
-  };
-
-  offerResponse: Offer | null = null;
+  offerId: string = '';
+  offer: Offer | null = null;
   loading: boolean = false;
   error: string | null = null;
 
@@ -47,31 +34,23 @@ export class AddOfferComponent {
   ) {
   }
 
-  addOfferClick() {
+  deleteOfferClick() {
     let token = sessionStorage['token'];
 
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer ' + token);
-
     this.loading = true;
     this.error = null;
 
-
-    this.http.post<any>(`${this.url}/offers`, this.offer, {headers})
+    this.http.delete<any>(`${this.url}/offers/${this.offerId}`, {headers})
       .pipe(
         tap(response => {
-          this.offerResponse = response;
+          this.offer = response;
           console.log(response)
         }),
         catchError(error => {
-          if (error.status === 409) {
-            this.error = 'Oferta zostala juz dodana';
-          } else if (error.status === 400) {
-            this.error = error.errors;
-          } else {
-            this.error = 'BLAD';
-          }
+          this.error = error.error.message;
           return throwError(error);
         }),
         finalize(() => {
@@ -79,5 +58,6 @@ export class AddOfferComponent {
           this.cdr.detectChanges();
         })
       ).subscribe();
+
   }
 }

@@ -7,6 +7,7 @@ import {CookieService} from "ngx-cookie-service";
 import {catchError, finalize, tap, throwError} from "rxjs";
 import {FormsModule} from "@angular/forms";
 import {environment} from "../../../environments";
+
 @Component({
   selector: 'app-offer-by-id',
   standalone: true,
@@ -32,7 +33,8 @@ export class OfferByIdComponent {
     private http: HttpClient,
     private router: Router,
     private cookieService: CookieService,
-    private cdr:ChangeDetectorRef,
+    private cdr:ChangeDetectorRef
+
   ) {
   }
   findOfferClick() {

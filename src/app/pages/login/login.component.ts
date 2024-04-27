@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { FormsModule } from "@angular/forms";
-import {HttpClientModule, HttpHeaders} from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
+import {Component} from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {Router} from "@angular/router";
-import { CookieService } from 'ngx-cookie-service';
+import {CookieService} from 'ngx-cookie-service';
 import {NgIf} from "@angular/common";
 import {environment} from "../../../environments";
 
@@ -22,7 +21,11 @@ import {environment} from "../../../environments";
 })
 
 export class LoginComponent {
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService ){}
+  constructor(private http: HttpClient,
+              private router: Router,
+              private cookieService: CookieService
+  ) {
+  }
 
   headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
@@ -38,17 +41,17 @@ export class LoginComponent {
   };
   // url = 'http://ec2-18-159-37-230.eu-central-1.compute.amazonaws.com:8000';
   url = environment.apiUrl;
-  bladText: string ='BŁĘDNE DANE';
+  bladText: string = 'BŁĘDNE DANE';
   blad: boolean = false;
 
 
   onLogin() {
 
-    this.http.post(this.url + '/token', this.loginObj, { headers: this.headers }).subscribe(
+    this.http.post(this.url + '/token', this.loginObj, {headers: this.headers}).subscribe(
       (response: any) => {
         if ('token' in response && response.token) {
           // this.cookieService.set('token', response.token);
-          sessionStorage.setItem('token',response.token)
+          sessionStorage.setItem('token', response.token)
           console.log('Token:', response.token);
 
           alert('Zalogowano pomyślnie!');
@@ -76,11 +79,9 @@ export class LoginComponent {
   }
 
 
-
-
   onRegister() {
 
-    this.http.post(this.url+'/register', this.registerObj, { headers: this.headers }).subscribe(
+    this.http.post(this.url + '/register', this.registerObj, {headers: this.headers}).subscribe(
       (response) => {
 
         console.log('Udane rejestracji:', response);

@@ -7,6 +7,7 @@
       <li><a href="/allOffers"  >All Offers</a></li>
       <li><a href="/byId" >Find By Id</a></li>
       <li><a href="/addOffer" >Add Offer</a></li>
+      <li *ngIf="userRole === 'ADMIN'" ><a href="/deleteOffer" >Delete Offer</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/login" (submit)="LogoutClick()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
