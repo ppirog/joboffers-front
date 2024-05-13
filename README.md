@@ -11,7 +11,7 @@ CLICK LINK TO SEE ON YOUTUBE HOW APP WORKS:
 https://www.youtube.com/watch?v=-vTgTVoMRhs
 
 CLICK LINK TO USE APP:
-http://ec2-3-79-167-135.eu-central-1.compute.amazonaws.com/login
+http://ec2-3-79-167-135.eu-central-1.compute.amazonaws.com/login (currently disabled)
 
 # SHOWCASE
 ![image](https://github.com/ppirog/joboffers-front/assets/126290295/0069206f-7f6c-4889-8462-4109d9adb702)
